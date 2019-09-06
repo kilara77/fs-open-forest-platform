@@ -1,0 +1,33 @@
+<section class="usa-section">
+  <div class="usa-grid">
+    <app-breadcrumbs></app-breadcrumbs>
+
+    <h1 id="skip-nav-target" tabindex="-1">Manage admin users</h1>
+
+    <table id="manage-users-table">
+      <thead>
+        <tr>
+          <th scope="col">Name/Email</th>
+          <th scope="col">Forest/s</th>
+          <th scope="col">Access-level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>
+            <span>{{user.name}}</span>
+            <span>{{user.email}}</span>
+          </td>
+          <td *ngFor="let forest of user.forests">
+            <span>{{forest}}</span>
+          </td>
+          <td>
+            <span>{{user.access}}</span>
+            <button>Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</section>
