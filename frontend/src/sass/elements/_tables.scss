@@ -14,3 +14,20 @@
     border: solid 1px $dark-grey;
   }
 }
+.table-user-info-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  .table-user-name {
+    font-size: 2rem;
+  }
+}
+.table-button-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  span {
+    margin-right: 10px;
+  }
+}

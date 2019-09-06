@@ -19,7 +19,11 @@
       background-color: $black;
     }
   }
-
+  .usa-button-table {
+    background-color: $white !important;
+    color: $fs-green !important;
+    border: solid 2px $fs-green !important;
+  }
   .usa-button.usa-button-primary-alt,
   .usa-button-primary-alt {
     background-color: $fs-green;

@@ -15,15 +15,19 @@
       <tbody>
         <tr *ngFor="let user of users">
           <td>
-            <span>{{user.name}}</span>
-            <span>{{user.email}}</span>
+            <div class="table-user-info-container">
+              <span class="table-user-name">{{user.name}}</span>
+              <span>{{user.email}}</span>
+            </div>
           </td>
           <td *ngFor="let forest of user.forests">
             <span>{{forest}}</span>
           </td>
           <td>
-            <span>{{user.access}}</span>
-            <button>Edit</button>
+            <div class="table-button-container">
+              <span>{{user.access}}</span>
+              <button class="usa-button usa-button-table">Edit</button>
+            </div>
           </td>
         </tr>
       </tbody>
