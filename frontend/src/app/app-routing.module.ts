@@ -31,6 +31,7 @@ import { McBreadcrumbsModule } from 'ngx6-angular-breadcrumbs';
 import { UserResolver } from './user-resolver.service';
 import { AdminSeasonDatesComponent } from './trees/admin/season-dates/season-dates.component';
 import { AdminDistrictDatesComponent } from './trees/admin/district-dates/district-dates.component';
+import { AdminManageUsersComponent } from './trees/admin/manage-users/manage-users.component';
 import { PermitBreadcrumbsResolver } from './_services/permit-breadcrumbs.resolver';
 import { ForestsAdminResolver } from './trees/forests/forest-finder/forests-admin-resolver.service';
 import { ShutdownComponent } from './shutdown/shutdown.component';
@@ -194,6 +195,14 @@ const appRoutes: Routes = [
         data: {
           title: 'Christmas trees permits season dates admin | U.S. Forest Service Open Forest',
           breadcrumbs: 'Christmas trees permits season dates',
+        }
+      },
+      {
+        path: 'manage-users',
+        component: AdminManageUsersComponent,
+        data: {
+          title: 'Manage users admin | U.S. Forest Service Open Forest',
+          breadcrumbs: 'Manage users'
         }
       },
       {
