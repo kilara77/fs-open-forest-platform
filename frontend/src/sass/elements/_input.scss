@@ -147,3 +147,19 @@ input[disabled] {
 .invalid-override {
   border: 3px solid $fs-red-dark !important;
 }
+
+.table-search-input {
+  height: 37px;
+  position: relative;
+  top: 6px;
+  right: -3px;
+}
+
+.search-and-add-users-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-input-and-submit {
+  display: flex;
+}
