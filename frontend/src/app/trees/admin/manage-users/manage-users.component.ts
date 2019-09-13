@@ -1,16 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable ,  forkJoin } from 'rxjs';
-import { ApplicationFieldsService } from '../../../application-forms/_services/application-fields.service';
+import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChristmasTreesApplicationService } from '../../_services/christmas-trees-application.service';
-import { FormBuilder, Validators } from '@angular/forms';
-// import * as moment from 'moment-timezone';
-import { ChristmasTreesAdminService } from '../christmas-trees-admin.service';
 import { UserInfoService } from '../../_services/user-info.service';
-import { environment } from '../../../../environments/environment';
-import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { FilterUsersPipe } from '../../_pipes/filter-users.pipe';
 
@@ -21,7 +14,7 @@ import { FilterUsersPipe } from '../../_pipes/filter-users.pipe';
 export class AdminManageUsersComponent implements OnInit {
   user: any;
   users: any;
-
+  addingUser: false;
 
   constructor(
     private http: HttpClient,
@@ -47,6 +40,10 @@ export class AdminManageUsersComponent implements OnInit {
         this.user = data.user;
       }
     });
+  }
+
+  addUser() {
+    this.addingUser = true;
   }
 
   editUser(user) {
