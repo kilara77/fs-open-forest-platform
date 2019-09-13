@@ -38,7 +38,6 @@ export class AdminManageUsersComponent implements OnInit {
       'Manage users admin | U.S. Forest Service Open Forest'
     );
     this.service.getAll().subscribe(res => {
-        console.dir(res)
         this.users = res
     })
     this.route.data.subscribe(data => {
