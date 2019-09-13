@@ -21,6 +21,7 @@ import { SpinnerModule } from 'angular2-spinner/dist';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 import { ChristmasTreeProgressBarComponent } from '../trees/forests/christmas-tree-progress-bar/christmas-tree-progress-bar.component';
 import { DatexPipe } from '../_pipes/datex.pipe';
+import { FilterUsersPipe } from '../_pipes/filter-users.pipe';
 
 @NgModule({
   imports: [CommonModule, AppRoutingModule, SpinnerModule, InViewportModule, NgxMdModule.forRoot()],
@@ -30,6 +31,7 @@ import { DatexPipe } from '../_pipes/datex.pipe';
     BreadcrumbsComponent,
     ChristmasTreeProgressBarComponent,
     DatexPipe,
+    FilterUsersPipe,
     ErrorMessageComponent,
     TrackScrollDirective,
     AppButtonComponent,
@@ -48,6 +50,7 @@ import { DatexPipe } from '../_pipes/datex.pipe';
     BreadcrumbsComponent,
     ChristmasTreeProgressBarComponent,
     DatexPipe,
+    FilterUsersPipe,
     ErrorMessageComponent,
     FilterPipe,
     AppRoutingModule,
