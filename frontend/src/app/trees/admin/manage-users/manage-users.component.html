@@ -39,7 +39,7 @@
                 <span *ngFor="let forest of user.forests">{{forest.access}}</span>
               </div>
               <div class="table-button-container">
-                <button class="usa-button usa-button-table">Edit</button>
+                <button (click)="editUser(user)" class="usa-button usa-button-table">Edit</button>
               </div>
             </div>
           </td>

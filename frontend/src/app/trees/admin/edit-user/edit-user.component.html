@@ -1,0 +1,46 @@
+<section class="usa-section">
+  <div class="usa-grid">
+    <app-breadcrumbs></app-breadcrumbs>
+
+    <div *ngIf="userToEdit !== undefined" class="edit-user-access">
+      <span>Edit user access</span>
+      <div class="name-email-remove">
+        <div class="name-email">
+          <div class="name-display">
+            <span>Name: {{userToEdit.name}}</span>
+          </div>
+          <div class="email-display">
+            <span>Email: {{userToEdit.email}}</span>
+          </div>
+        </div>
+        <div class="remove-user">
+          <button class="usa-button">Remove user</button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="userToEdit !== undefined" class="current-access-section">
+      <span>CURRENT ACCESS:</span>
+      <div class="current-access-levels">
+        <div class="current-access-level" *ngFor="let forest of userToEdit.forests">
+          <span>Forest: {{forest.name}}</span>
+          <span>Access: {{forest.access}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="userToEdit !== undefined" class="add-remove-access-section">
+      <span>ADD/REMOVE ACCESS:</span>
+      <div class="add-remove-access-levels">
+        <div class="choose-access-level">
+          <span>Manage-access</span>
+          <span>Write-access</span>
+          <span>Read-access</span>
+          <span>Remove access</span>
+        </div>
+        <button class="usa-button">Update</button>
+      </div>
+    </div>
+
+  </div>
+</section>

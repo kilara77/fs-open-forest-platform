@@ -16,6 +16,7 @@ import { AdminSeasonDatesComponent } from './admin/season-dates/season-dates.com
 import { ChristmasTreesAdminService } from './admin/christmas-trees-admin.service';
 import { AdminDistrictDatesComponent } from './admin/district-dates/district-dates.component';
 import { AdminManageUsersComponent } from './admin/manage-users/manage-users.component';
+import { AdminEditUserComponent } from './admin/edit-user/edit-user.component';
 import { ChristmasTreeMapDetailsComponent } from './forests/christmas-tree-map-details/christmas-tree-map-details.component';
 import { BuyPermitBarComponent } from './forests/tree-guidelines/tree-buy-permit-bar/buy-permit-bar.component';
 
@@ -25,6 +26,7 @@ import { BuyPermitBarComponent } from './forests/tree-guidelines/tree-buy-permit
     ReportResultsComponent,
     AdminDistrictDatesComponent,
     AdminManageUsersComponent,
+    AdminEditUserComponent,
     AdminSeasonDatesComponent,
     TreeCuttingRulesComponent,
     TreeGuidelinesComponent,

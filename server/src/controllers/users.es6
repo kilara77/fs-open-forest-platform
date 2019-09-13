@@ -40,21 +40,21 @@ users.getUsers = (req, res) => {
  * @param {Object} res - http response
  */
 users.getUser = (req, res) => {
-  userModel.users
+  userModel
     .findOne({
       where: {
         id: req.params.id
       }
     })
-    .then((app) => {
-      if (app) {
-        res.status(200).json(userService.translateUserFromDatabaseClient(app));
+    .then((user) => {
+      if (user) {
+        res.status(200).json(userService.translateUserFromDatabaseToClient(user));
       } else {
         res.status(404).send();
       }
     })
     .catch((error) => {
-      logger.error(`ERROR: ServerError: user controller gertUserr error for user ${req.params.id}`, error);
+      logger.error(`ERROR: ServerError: user controller getUser error for user ${req.params.id}`, error);
       res.status(400).json(error);
     });
 };
