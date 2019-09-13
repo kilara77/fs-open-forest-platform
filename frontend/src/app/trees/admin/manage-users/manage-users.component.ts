@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserInfoService } from '../../_services/user-info.service';
 import { Title } from '@angular/platform-browser';
-import { FilterUsersPipe } from '../../_pipes/filter-users.pipe';
 
 @Component({
   selector: 'app-manage-users',
@@ -14,7 +13,8 @@ import { FilterUsersPipe } from '../../_pipes/filter-users.pipe';
 export class AdminManageUsersComponent implements OnInit {
   user: any;
   users: any;
-  addingUser: false;
+  newUser: any;
+  addingUser: any;
 
   constructor(
     private http: HttpClient,
@@ -29,6 +29,11 @@ export class AdminManageUsersComponent implements OnInit {
    * Set data from route resolver
    */
   ngOnInit() {
+    this.newUser = {
+      firstName: '',
+      lastName: '',
+      email: ''
+    };
     this.titleService.setTitle(
       'Manage users admin | U.S. Forest Service Open Forest'
     );

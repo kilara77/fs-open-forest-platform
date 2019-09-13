@@ -9,7 +9,7 @@
         <input [(ngModel)]="searchText" type="text" class="usa-input table-search-input"/>
         <button class="usa-button usa-button-primary-alt">Search</button>
       </div>
-      <button (click)="addUser()" class="usa-button usa-button-primary-alt add-user-button">Add User</button>
+      <button (click)="addingUser = true" class="usa-button usa-button-primary-alt add-user-button">Add User</button>
     </div>
 
     <table id="manage-users-table">
@@ -46,6 +46,22 @@
         </tr>
       </tbody>
     </table>
+
+    <div (click)="addingUser = false" *ngIf="addingUser" class="modal-view"></div>
+    <div *ngIf="addingUser" class="add-user-modal">
+      <span class="close-modal-button" (click)="addingUser = false">X</span>
+      <span class="add-user-label">Add user</span>
+      <label for="new-user-input" class="usa-input">First Name</label>
+      <input name="new-user-input" [(ngModel)]="newUser.firstName" type="text"/>
+      <label for="new-user-input" class="usa-input">Last Name</label>
+      <input name="new-user-input" [(ngModel)]="newUser.lastName" type="text"/>
+      <label for="new-user-input" class="usa-input">Email address</label>
+      <input name="new-user-input" [(ngModel)]="newUser.email" type="text"/>
+      <div class="modal-action-buttons">
+        <button (click)="addUser()" class="usa-button usa-button-primary-alt">Add new admin</button>
+        <button (click)="addingUser = false" class="usa-button usa-button-table">Cancel</button>
+      </div>
+    </div>
 
   </div>
 </section>
