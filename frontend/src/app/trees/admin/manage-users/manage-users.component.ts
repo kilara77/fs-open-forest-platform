@@ -12,6 +12,7 @@ import { UserInfoService } from '../../_services/user-info.service';
 import { environment } from '../../../../environments/environment';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { FilterUsersPipe } from '../../_pipes/filter-users.pipe';
 
 @Component({
   selector: 'app-manage-users',

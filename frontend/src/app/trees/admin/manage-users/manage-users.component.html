@@ -6,7 +6,7 @@
 
     <div class="search-and-add-users-container">
       <div class="search-input-and-submit">
-        <input type="text" class="usa-input table-search-input"/>
+        <input [(ngModel)]="searchText" type="text" class="usa-input table-search-input"/>
         <button class="usa-button usa-button-primary-alt">Search</button>
       </div>
       <button class="usa-button usa-button-primary-alt add-user-button">Add User</button>
@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users | filterUsers : searchText">
           <td>
             <div class="table-user-info-container">
               <span class="table-user-name">{{user.name}}</span>
