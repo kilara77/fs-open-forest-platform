@@ -3,7 +3,7 @@
 
 import {mergeMap, map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable ,  forkJoin } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import * as moment from 'moment/moment';
@@ -13,6 +13,18 @@ export class UserInfoService {
   private endpoint = environment.apiUrl + 'users/';
 
   constructor(private http: HttpClient) {}
+
+  // create an openforest user
+  create(body) {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    const options = {
+      headers: headers,
+      withCredentials: true
+    };
+
+    return this.http.post(this.endpoint, body, options);
+  }
 
   /**
    * @returns all users
