@@ -4,7 +4,7 @@ const users = [
     name: 'Brian Davidson',
     role: 'user',
     email: 'bdavidson@cynerge.com',
-    forests: ["name: 'forest1', access: 'write'", "name: 'forest2', access: 'read'"],
+    forests: ['{"name": "forest1", "access": "write"}', '{"name": "forest2", "access": "read"}'],
     created: 'now()',
     updated: 'now()'
   }

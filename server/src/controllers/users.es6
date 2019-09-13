@@ -24,8 +24,6 @@ users.getUsers = (req, res) => {
     })
     .then((results) => {
       if (results) {
-        console.log('results')
-        console.dir(results[0])
         res.status(200).json(results);
       } else {
         res.status(404).send();

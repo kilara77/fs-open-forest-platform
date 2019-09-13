@@ -21,7 +21,13 @@ module.exports = util.getSequelizeConnection().define(
     forests: {
         type: Sequelize.ARRAY(Sequelize.STRING),
         get: function() {
-            return this.getDataValue('forests');
+          let parsed_forests = []
+             let forests = this.getDataValue('forests')
+             for (var i = 0; i < forests.length; i++) {
+               let forest = JSON.parse(forests[i])
+               parsed_forests.push(forest)
+             }
+            return parsed_forests;
         },
         set: function(val) {
             return this.setDataValue('forests', val);
