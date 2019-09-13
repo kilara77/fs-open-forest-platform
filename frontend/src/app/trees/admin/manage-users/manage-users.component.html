@@ -28,13 +28,19 @@
               <span>{{user.email}}</span>
             </div>
           </td>
-          <td *ngFor="let forest of user.forests">
-            <span>{{forest}}</span>
+          <td>
+            <div class="table-user-forest-names">
+              <span *ngFor="let forest of user.forests">{{forest.name}}</span>
+            </div>
           </td>
           <td>
-            <div class="table-button-container">
-              <span>{{user.access}}</span>
-              <button class="usa-button usa-button-table">Edit</button>
+            <div class="table-access-container">
+              <div class="table-access-level-container">
+                <span *ngFor="let forest of user.forests">{{forest.access}}</span>
+              </div>
+              <div class="table-button-container">
+                <button class="usa-button usa-button-table">Edit</button>
+              </div>
             </div>
           </td>
         </tr>
