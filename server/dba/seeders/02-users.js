@@ -1,6 +1,5 @@
 const users = [
   {
-    id: 1,
     name: 'Brian Davidson',
     role: 'admin',
     email: 'bdavidson@cynerge.com',
@@ -8,7 +7,6 @@ const users = [
     created: 'now()',
     updated: 'now()'
   }, {
-    id: 2,
     name: 'Mike Laney',
     role: 'admin',
     email: 'mlaney@cynerge.com',
@@ -16,7 +14,6 @@ const users = [
     created: 'now()',
     updated: 'now()'
   }, {
-    id: 3,
     name: 'Test User',
     role: 'user',
     email: 'test@test.com',

@@ -3,6 +3,7 @@
  * @module services/user-service
  */
 const moment = require('moment-timezone');
+const userModel = require('../models/users.es6');
 
 const userService = {};
 
@@ -20,6 +21,12 @@ userService.translateUserFromDatabaseToClient = (input) => {
     role: input.role,
     forests: input.forests
   };
+};
+
+userService.createUser = async (user) => {
+  const transformed = userService.translateUserFromDatabaseToClient(user);
+  const createUserResponse = await userModel.create(transformed);
+  return createUserResponse;
 };
 
 module.exports = userService;

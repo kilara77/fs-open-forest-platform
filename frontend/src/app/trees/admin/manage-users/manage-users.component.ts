@@ -50,7 +50,12 @@ export class AdminManageUsersComponent implements OnInit {
   addUser() {
     // validate newUser object
     if (this.newUser.firstName.length && this.newUser.lastName.length && this.newUser.email.length) {
-      this.service.create(this.newUser).subscribe(res => {
+      this.service.create({
+        name: this.newUser.firstName + ' ' + this.newUser.lastName,
+        email: this.newUser.email,
+        role: 'user',
+        forests: []
+      }).subscribe(res => {
         console.log('newUser created: ')
         console.dir(res)
       })

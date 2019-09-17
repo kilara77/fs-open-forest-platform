@@ -16,9 +16,12 @@ router.get('/', usersController.getUsers);
 /** get info for a single user */
 router.get('/:id', usersController.getUser);
 
+// delete a user
+router.get('/:id/delete', usersController.deleteUser);
+
 /** POST a new user */
-// router.post('/users', usersController.create);
-//
+router.post('/create', usersController.createUser);
+
 // /** Update user */
 // router.put('/users', middleware.checkToken, usersController.updateUser);
 

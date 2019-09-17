@@ -18,12 +18,19 @@ export class UserInfoService {
   create(body) {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
+    let newUser = {
+      name: body.name,
+      email: body.email,
+      role: 'user',
+      forests: []
+    }
+
     const options = {
       headers: headers,
       withCredentials: true
     };
 
-    return this.http.post(this.endpoint, body, options);
+    return this.http.post(this.endpoint + 'create', newUser, options);
   }
 
   /**
