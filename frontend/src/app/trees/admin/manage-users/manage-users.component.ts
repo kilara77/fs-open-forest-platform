@@ -56,8 +56,7 @@ export class AdminManageUsersComponent implements OnInit {
         role: 'user',
         forests: []
       }).subscribe(res => {
-        console.log('newUser created: ')
-        console.dir(res)
+        window.location.reload()
       })
     } else {
       console.log('missing a field')
