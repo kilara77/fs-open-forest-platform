@@ -204,7 +204,11 @@ const appRoutes: Routes = [
         data: {
           title: 'Manage users admin | U.S. Forest Service Open Forest',
           breadcrumbs: 'Manage users'
-        }
+        },
+        resolve: {
+          user: UserResolver,
+          forests: ForestsResolver
+        },
       },
       {
         path: 'manage-users/:id',
@@ -212,7 +216,11 @@ const appRoutes: Routes = [
         data: {
           title: 'Edit User',
           breadcrumbs: 'Edit User'
-        }
+        },
+        resolve: {
+          user: UserResolver,
+          forests: ForestsResolver
+        },
       },
       {
         path: 'district-dates',

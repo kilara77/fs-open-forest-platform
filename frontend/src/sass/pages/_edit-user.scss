@@ -14,7 +14,7 @@
   .name-email-remove {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     .name-email {
       display: flex;
       flex-direction: column;
@@ -24,7 +24,7 @@
   .current-access-levels {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     .current-access-level {
       display: flex;
       flex-direction: column;
@@ -44,10 +44,22 @@
   }
 
   .add-remove-access-section {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
+    .select-a-forest {
+      font-weight: bold;
+      margin-top: 20px;
+    }
     .choose-access-level {
       display: flex;
       flex-direction: column;
+      label {
+        margin-top: 1.5rem;
+      }
     }
+  }
+  .forest-finder {
+    height: 50px;
   }
 }

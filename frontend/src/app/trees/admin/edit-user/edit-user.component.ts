@@ -21,6 +21,8 @@ export class AdminEditUserComponent implements OnInit {
   user: any;
   users: any;
   userToEdit: any;
+  selectedForest: any;
+  forests: any;
 
   constructor(
     private http: HttpClient,
@@ -50,6 +52,21 @@ export class AdminEditUserComponent implements OnInit {
     this.route.data.subscribe(data => {
       if (data && data.user) {
         this.user = data.user;
+        this.forests = data.forests;
+
+        // sort forests alphabetically
+        this.forests.sort(function(a, b) {
+          const forestA = a.description;
+          const forestB = b.description;
+
+          if (forestA < forestB) {
+            return -1;
+          }
+          if (forestA > forestB) {
+            return 1;
+          }
+          return 0;
+        });
       }
     });
   }

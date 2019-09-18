@@ -31,12 +31,21 @@
 
       <div *ngIf="userToEdit !== undefined" class="add-remove-access-section">
         <span class="edit-user-header">ADD/REMOVE ACCESS:</span>
+        <span class="select-a-forest">Select forest</span>
+        <select class="forest-finder" role="listbox" [(ngModel)]="selectedForest" id="forest-finder-select" name="forestFinderSelect">
+          <option value="" disabled selected>Select a forest</option>
+          <option role='option' *ngFor="let forest of forests" [ngValue]="forest">{{ forest.description }}</option>
+        </select>
         <div class="add-remove-access-levels">
           <div class="choose-access-level">
-            <span>Manage-access</span>
-            <span>Write-access</span>
-            <span>Read-access</span>
-            <span>Remove access</span>
+            <input type="radio" id="manage-option" name="access" value="manage">
+            <label for="manage-option">Manage-access</label>
+            <input type="radio" id="write-option" name="access" value="write">
+            <label for="write-option">Write-access</label>
+            <input type="radio" id="read-option" name="access" value="read">
+            <label for="read-option">Read-access</label>
+            <input type="radio" id="remove-option" name="access" value="remove">
+            <label for="remove-option">Remove access</label>
           </div>
           <button class="usa-button usa-button-primary-alt">Update</button>
         </div>
