@@ -23,6 +23,8 @@ export class AdminEditUserComponent implements OnInit {
   userToEdit: any;
   selectedForest: any;
   forests: any;
+  accessForSelectedForest: any;
+  accessSelection: any;
 
   constructor(
     private http: HttpClient,
@@ -71,12 +73,38 @@ export class AdminEditUserComponent implements OnInit {
     });
   }
 
+  // user selects a new forest from dropdown
+  changeForest() {
+    for (let forest_index in this.userToEdit.forests) {
+      let forest = this.userToEdit.forests[forest_index]
+      let forest_id = Number(forest.id)
+      // this.accessForSelectedForest = 'remove'
+      this.accessSelection = ''
+      if (forest_id === this.selectedForest.id) {
+        this.accessForSelectedForest = forest.access
+        this.accessSelection = this.accessForSelectedForest
+        return
+      }
+    }
+  }
+
+  // user clicks the remove user button
   removeUser() {
     this.service.delete(this.userToEdit.id).subscribe(res => {
       if (res) {
         this.router.navigate(['/admin/christmas-trees/manage-users/']);
       }
     })
+  }
+
+  // user clicks update button
+  updateUser() {
+    console.dir(this.selectedForest)
+    console.log('give ' + this.userToEdit.name + ' ' + this.accessSelection + ' access to ' + this.selectedForest.forestNameShort)
+  }
+
+  showFriendlyAccessText(access) {
+    return access.charAt(0).toUpperCase() + access.slice(1) + '-access'
   }
 
 }

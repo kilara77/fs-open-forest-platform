@@ -3,21 +3,21 @@ const users = [
     name: 'Brian Davidson',
     role: 'admin',
     email: 'bdavidson@cynerge.com',
-    forests: ['{"name": "forest1", "access": "write"}', '{"name": "forest2", "access": "read"}'],
+    forests: ['{"forest_name_short": "Arapaho and Roosevelt", "access": "write", "id": "1"}', '{"id": "2", "forest_name_short": "Flathead", "access": "read"}'],
     created: 'now()',
     updated: 'now()'
   }, {
     name: 'Mike Laney',
     role: 'admin',
     email: 'mlaney@cynerge.com',
-    forests: ['{"name": "forest1", "access": "write"}', '{"name": "forest2", "access": "read"}', '{"name": "forest3", "access": "read"}', '{"name": "forest4", "access": "read"}'],
+    forests: ['{"id": "1", "forest_name_short": "Arapaho and Roosevelt", "access": "write"}', '{"id": "2", "forest_name_short": "Flathead", "access": "read"}', '{"id": "3", "forest_name_short": "Mt. Hood", "access": "read"}', '{"id": "4", "forest_name_short": "Shoshone", "access": "read"}'],
     created: 'now()',
     updated: 'now()'
   }, {
     name: 'Test User',
     role: 'user',
     email: 'test@test.com',
-    forests: ['{"name": "forest8", "access": "read"}'],
+    forests: ['{"id": "8", "forest_name_short": "Deschutes", "access": "read"}'],
     created: 'now()',
     updated: 'now()'
   }

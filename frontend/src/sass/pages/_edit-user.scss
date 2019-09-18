@@ -1,7 +1,7 @@
 .edit-user-section {
   background-color: $white;
   border: 1px solid darkgray;
-  width: 750px;
+  width: 600px;
   padding: 40px 50px;
   .edit-user-title {
     color: $fs-green;
@@ -25,6 +25,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
+    margin-top: 20px;
     .current-access-level {
       display: flex;
       flex-direction: column;

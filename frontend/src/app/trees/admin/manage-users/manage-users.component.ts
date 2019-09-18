@@ -67,4 +67,8 @@ export class AdminManageUsersComponent implements OnInit {
     this.router.navigate(['/admin/christmas-trees/manage-users/', user.id]);
   }
 
+  showFriendlyAccessText(access) {
+    return access.charAt(0).toUpperCase() + access.slice(1) + '-access'
+  }
+
 }

@@ -30,13 +30,13 @@
           </td>
           <td>
             <div class="table-user-forest-names">
-              <span *ngFor="let forest of user.forests">{{forest.name}}</span>
+              <span *ngFor="let forest of user.forests">{{forest.forest_name_short}}</span>
             </div>
           </td>
           <td>
             <div class="table-access-container">
               <div class="table-access-level-container">
-                <span *ngFor="let forest of user.forests">{{forest.access}}</span>
+                <span *ngFor="let forest of user.forests">{{showFriendlyAccessText(forest.access)}}</span>
               </div>
               <div class="table-button-container">
                 <button (click)="editUser(user)" class="usa-button usa-button-table">Edit</button>

@@ -23,8 +23,8 @@
         <span class="edit-user-header">CURRENT ACCESS:</span>
         <div class="current-access-levels">
           <div class="current-access-level" *ngFor="let forest of userToEdit.forests">
-            <span class="edit-user-label">Forest: <span class="edit-user-value">{{forest.name}}</span></span>
-            <span class="edit-user-label">Access: <span class="edit-user-value">{{forest.access}}</span></span>
+            <span class="edit-user-label">Forest: <span class="edit-user-value">{{forest.forest_name_short}}</span></span>
+            <span class="edit-user-label">Access: <span class="edit-user-value">{{showFriendlyAccessText(forest.access)}}</span></span>
           </div>
         </div>
       </div>
@@ -32,22 +32,22 @@
       <div *ngIf="userToEdit !== undefined" class="add-remove-access-section">
         <span class="edit-user-header">ADD/REMOVE ACCESS:</span>
         <span class="select-a-forest">Select forest</span>
-        <select class="forest-finder" role="listbox" [(ngModel)]="selectedForest" id="forest-finder-select" name="forestFinderSelect">
+        <select class="forest-finder" (change)="changeForest()" role="listbox" [(ngModel)]="selectedForest" id="forest-finder-select" name="forestFinderSelect">
           <option value="" disabled selected>Select a forest</option>
           <option role='option' *ngFor="let forest of forests" [ngValue]="forest">{{ forest.description }}</option>
         </select>
         <div class="add-remove-access-levels">
           <div class="choose-access-level">
-            <input type="radio" id="manage-option" name="access" value="manage">
+            <input [(ngModel)]="accessSelection" type="radio" id="manage-option" name="access" [value]="'manage'">
             <label for="manage-option">Manage-access</label>
-            <input type="radio" id="write-option" name="access" value="write">
+            <input [(ngModel)]="accessSelection" type="radio" id="write-option" name="access" [value]="'write'">
             <label for="write-option">Write-access</label>
-            <input type="radio" id="read-option" name="access" value="read">
+            <input [(ngModel)]="accessSelection" type="radio" id="read-option" name="access" [value]="'read'">
             <label for="read-option">Read-access</label>
-            <input type="radio" id="remove-option" name="access" value="remove">
+            <input [(ngModel)]="accessSelection" type="radio" id="remove-option" name="access" [value]="'remove'">
             <label for="remove-option">Remove access</label>
           </div>
-          <button class="usa-button usa-button-primary-alt">Update</button>
+          <button (click)="updateUser()" class="usa-button usa-button-primary-alt">Update</button>
         </div>
       </div>
     </div>
