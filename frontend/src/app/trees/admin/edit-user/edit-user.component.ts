@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable ,  forkJoin } from 'rxjs';
 import { ApplicationFieldsService } from '../../../application-forms/_services/application-fields.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChristmasTreesApplicationService } from '../../_services/christmas-trees-application.service';
 import { FormBuilder, Validators } from '@angular/forms';
 // import * as moment from 'moment-timezone';
@@ -27,6 +27,7 @@ export class AdminEditUserComponent implements OnInit {
     private service: UserInfoService,
     private titleService: Title,
     private route: ActivatedRoute,
+    private router: Router
   ) {
   }
 
@@ -51,6 +52,14 @@ export class AdminEditUserComponent implements OnInit {
         this.user = data.user;
       }
     });
+  }
+
+  removeUser() {
+    this.service.delete(this.userToEdit.id).subscribe(res => {
+      if (res) {
+        this.router.navigate(['/admin/christmas-trees/manage-users/']);
+      }
+    })
   }
 
 }

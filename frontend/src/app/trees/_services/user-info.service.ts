@@ -47,4 +47,9 @@ export class UserInfoService {
     return this.http.get<any>(this.endpoint + id);
   }
 
+  // delete openforest user
+  delete(id) {
+    return this.http.get(this.endpoint + id + '/delete')
+  }
+
 }
