@@ -1,44 +1,45 @@
 <section class="usa-section">
   <div class="usa-grid">
-    <app-breadcrumbs></app-breadcrumbs>
 
-    <div *ngIf="userToEdit !== undefined" class="edit-user-access">
-      <span>Edit user access</span>
-      <div class="name-email-remove">
-        <div class="name-email">
-          <div class="name-display">
-            <span>Name: {{userToEdit.name}}</span>
+    <div class="edit-user-section">
+      <span class="edit-user-title">Edit user access</span>
+      <div *ngIf="userToEdit !== undefined" class="edit-user-access">
+        <div class="name-email-remove">
+          <div class="name-email">
+            <div class="name-display">
+              <span class="edit-user-label">Name: <span class="edit-user-value">{{userToEdit.name}}</span></span>
+            </div>
+            <div class="email-display">
+              <span class="edit-user-label">Email: <span class="edit-user-value">{{userToEdit.email}}</span></span>
+            </div>
           </div>
-          <div class="email-display">
-            <span>Email: {{userToEdit.email}}</span>
+          <div class="remove-user">
+            <button (click)="removeUser()" class="usa-button usa-button-table">Remove user</button>
           </div>
-        </div>
-        <div class="remove-user">
-          <button (click)="removeUser()" class="usa-button">Remove user</button>
         </div>
       </div>
-    </div>
 
-    <div *ngIf="userToEdit !== undefined" class="current-access-section">
-      <span>CURRENT ACCESS:</span>
-      <div class="current-access-levels">
-        <div class="current-access-level" *ngFor="let forest of userToEdit.forests">
-          <span>Forest: {{forest.name}}</span>
-          <span>Access: {{forest.access}}</span>
+      <div *ngIf="userToEdit !== undefined" class="current-access-section">
+        <span class="edit-user-header">CURRENT ACCESS:</span>
+        <div class="current-access-levels">
+          <div class="current-access-level" *ngFor="let forest of userToEdit.forests">
+            <span class="edit-user-label">Forest: <span class="edit-user-value">{{forest.name}}</span></span>
+            <span class="edit-user-label">Access: <span class="edit-user-value">{{forest.access}}</span></span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div *ngIf="userToEdit !== undefined" class="add-remove-access-section">
-      <span>ADD/REMOVE ACCESS:</span>
-      <div class="add-remove-access-levels">
-        <div class="choose-access-level">
-          <span>Manage-access</span>
-          <span>Write-access</span>
-          <span>Read-access</span>
-          <span>Remove access</span>
+      <div *ngIf="userToEdit !== undefined" class="add-remove-access-section">
+        <span class="edit-user-header">ADD/REMOVE ACCESS:</span>
+        <div class="add-remove-access-levels">
+          <div class="choose-access-level">
+            <span>Manage-access</span>
+            <span>Write-access</span>
+            <span>Read-access</span>
+            <span>Remove access</span>
+          </div>
+          <button class="usa-button usa-button-primary-alt">Update</button>
         </div>
-        <button class="usa-button">Update</button>
       </div>
     </div>
 

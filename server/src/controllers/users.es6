@@ -57,6 +57,7 @@ users.getUser = (req, res) => {
   });
 };
 
+// API function to create a new openforest user
 users.createUser = async (req, res) => {
   util.logControllerAction(req, '  users.create  ', req.body);
   userModel.findAll({
@@ -86,6 +87,7 @@ users.createUser = async (req, res) => {
 
 };
 
+// API function to delete an openforest user
 users.deleteUser = (req, res) => {
   userModel.destroy({
     where: {

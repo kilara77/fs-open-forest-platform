@@ -1,0 +1,53 @@
+.edit-user-section {
+  background-color: $white;
+  border: 1px solid darkgray;
+  width: 750px;
+  padding: 40px 50px;
+  .edit-user-title {
+    color: $fs-green;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .edit-user-access {
+    margin-top: 20px;
+  }
+  .name-email-remove {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    .name-email {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  .current-access-levels {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    .current-access-level {
+      display: flex;
+      flex-direction: column;
+      margin: 8px 0px;
+    }
+  }
+  .edit-user-header {
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bold;
+  }
+  .edit-user-label {
+    font-weight: bold;
+  }
+  .edit-user-value {
+    font-weight: normal;
+  }
+
+  .add-remove-access-section {
+    margin-bottom: 20px;
+    .choose-access-level {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
