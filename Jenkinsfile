@@ -21,12 +21,7 @@ pipeline {
         }
     }
     
-      stage('Run e2e'){
-    steps {
-        sh1 'echo "Run e2e"'
-        }
-    }
-
+  
       stage('Run lint'){
     steps {
         sh 'echo "Run lint"'
