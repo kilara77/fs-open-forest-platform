@@ -18,7 +18,6 @@ pipeline {
        stage('Run Unit Tests'){
     steps {
         sh 'echo "Run Unit Tests"'
-	//sh label: '', returnStdout: true, script: 'sh rununittests.sh'
         }
     }
     
