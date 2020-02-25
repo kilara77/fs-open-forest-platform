@@ -23,7 +23,7 @@ pipeline {
     
       stage('Run e2e'){
     steps {
-        sh1 'echo "Run e2e"'
+        sh 'echo "Run e2e"'
         }
     }
 
