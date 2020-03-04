@@ -137,6 +137,7 @@ stage('run pa11y'){
                 }
             }	
     }
+ }
 
 post{
     success {
@@ -152,4 +153,4 @@ post{
     }    	  
     
    }    
-}
+
