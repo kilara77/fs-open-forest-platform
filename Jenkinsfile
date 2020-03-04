@@ -64,7 +64,10 @@ pipeline {
 	  
 stage('install-dependencies'){
     steps {
-        sh 'echo "Install dependencies"'	
+	    script {
+        		INSTALL_DEPENDENCIES_STATUS= 'Failed'
+        		sh 'echo "Install dependencies"'	
+    		}
         }
 		post {
                 failure {
