@@ -62,16 +62,17 @@ pipeline {
     }
 	  
 
-stage('Notification'){
-    steps {
+post{
+    success {
 	    echo "${CHECKOUT_STATUS}"  
-	    script {
-	    EMAIL_BODY = "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Checkout-code ${CHECKOUT_STATUS} Check console output at $BUILD_URL to view the results."
-	    }  
-	    
-	    echo "${EMAIL_BODY}"  
-	    emailext attachLog: true, attachmentsPattern: '', body: '${EMAIL_BODY}', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
-        }		
+	    echo "Job Success"
+	    emailext attachLog: true, attachmentsPattern: '', body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Checkout-code ${CHECKOUT_STATUS} Check console output at $BUILD_URL to view the results.', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+        }	
+   	
+    failure {
+	    echo "Job Failed"  	    
+	    emailext attachLog: true, attachmentsPattern: '', body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Checkout-code ${CHECKOUT_STATUS} Check console output at $BUILD_URL to view the results.', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+        }	
     }    	
 	  
     
