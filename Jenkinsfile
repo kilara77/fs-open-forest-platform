@@ -55,10 +55,15 @@ pipeline {
                 script {
                   currentBuild.displayName = "${env.CURRENTBUILD_DISPLAYNAME}"
                   currentBuild.description = "${env.CURRENT_BUILDDESCRIPTION}"	
-		  echo "${CHECKOUT_STATUS}"  		
-
+		  echo "${CHECKOUT_STATUS}"		
                 }      	     
-	} 	
+	}
+     post {
+	failure {
+	    echo 'FAILED (in stage checkout code)'
+	}
+    }	
+    }
     }
   }
 	  
@@ -67,7 +72,7 @@ post{
     success {
 	    echo "${CHECKOUT_STATUS}"  
 	    echo "Job Success"
-	    emailext attachLog: true, attachmentsPattern: '', body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Checkout-code ' + ${CHECKOUT_STATUS} + 'Check console output at $BUILD_URL to view the results.', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+	    emailext attachLog: true, attachmentsPattern: '', body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Checkout-code ${CHECKOUT_STATUS} Check console output at $BUILD_URL to view the results.', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
         }	
    	
     failure {
