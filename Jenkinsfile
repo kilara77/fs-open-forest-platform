@@ -48,18 +48,95 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '3'))
     }  
 
-  stages { 
+ stages { 
 	  
     stage('Checkout Code'){
        steps {              
                 script {
                   currentBuild.displayName = "${env.CURRENTBUILD_DISPLAYNAME}"
-                  currentBuild.description = "${env.CURRENT_BUILDDESCRIPTION}"	
-		  echo "${CHECKOUT_STATUS}"		
+                  currentBuild.description = "${env.CURRENT_BUILDDESCRIPTION}"	     
                 }      	     
-	}
+	} 
+	 post {
+                failure {
+                    echo 'FAILED (in stage checkout code)'
+                }
+            }	
     }
-  } 
+	  
+stage('install-dependencies'){
+    steps {
+        sh 'echo "Install dependencies"'	
+        }
+		post {
+                failure {
+                    echo 'FAILED (in stage install dependencies)'
+                }
+            }	
+    }	  
+	 
+ stage('run tests')
+	  {
+      parallel{	  
+	      
+stage('run-unit-tests'){
+    steps {
+        sh 'echo "run-unit-tests"'
+        }
+		post {
+                failure {
+                    echo 'FAILED (in stage run-unit tests)'
+                }
+            }	
+    }
+			 
+			 
+  stage('run-lint'){
+    steps {
+	sh 'echo "run lint"'
+	}
+	post {
+                failure {
+                    echo 'FAILED (in stage lint)'
+                }
+            }	
+    }	      
+	      
+  stage('run-sonarqube'){
+        steps {
+	sh 'echo "run-sonarqube"'	    
+    }
+	post {
+                failure {
+                    echo 'FAILED (in stage sonarqube)'
+                }
+            }	
+   }  
+	 
+stage('run pa11y'){
+    steps {
+        sh 'echo "run pa11y"'
+        }
+    }
+	post {
+                failure {
+                    echo 'FAILED (in stage pa11y)'
+                }
+            }	
+
+		 }
+	  }	      
+	  
+ stage('dev-deploy'){
+    steps {
+        sh 'echo "dev-deploy"'	    
+        }
+		post {
+                failure {
+                    echo 'FAILED (in stage dev-deploy)'
+                }
+            }	
+    }
 
 post{
     success {
