@@ -19,14 +19,13 @@ pipeline {
         SONAR_PROJECT_NAME = "fs-openforest-platform"
         MAILING_LIST = "ikumarasamy@techtrend.us, mahfuzur.rahman@usda.gov"
 	CHECKOUT_STATUS = 'Success'
-        InstallDependenciesStatus = "Success"
-	RunLintStatus = "Success"
-	RunUnitTestsStatus = "Success"
-	Rune2eStatus = "Success"
-	RunPa11yStatus = "Success"	    
-	DeployStatus = "Success"	       
-	NotificationStatus = "Success"
-	RunSonarQubeStatus = "Success"	    
+        INSTALL_DEPENDENCIES_STATUS= 'Success'
+	RUN_LINT_STATUS = 'Success'
+	RUN_UNIT_TESTS_STATUS = 'Success'
+	RUN_E2E_STATUS = 'Success'
+	RUN_PA11Y_STATUS = 'Success'	    
+	DEPLOY_STATUS = 'Success'	       	
+	RUN_SONARQUBE_STATUS = 'Success'	    
 	
 	REPO_NAME="fs-open-forest-platform"
 	REPO_OWNER_NAME="USDAForestService"
@@ -36,7 +35,6 @@ pipeline {
 	BASIC_AUTH_USER=credentials('BASIC_AUTH_USER')
 	CF_USERNAME = credentials('CF_USERNAME')
         CF_PASSWORD = credentials('CF_PASSWORD')  
-	
 	
         
     }
@@ -141,7 +139,14 @@ stage('run pa11y'){
 
 post{
     success {
-	    echo "${CHECKOUT_STATUS}"  
+	    echo "Checkout Status ${CHECKOUT_STATUS}"  
+	    echo "INSTALL_DEPENDENCIES_STATUS Status ${INSTALL_DEPENDENCIES_STATUS}"  
+	    echo "RUN_LINT_STATUS Status ${RUN_LINT_STATUS}"  
+	    echo "RUN_UNIT_TESTS_STATUS Status ${RUN_UNIT_TESTS_STATUS}"  
+	    echo "RUN_E2E_STATUS Status ${RUN_E2E_STATUS}"  
+	    echo "RUN_PA11Y_STATUS Status ${RUN_PA11Y_STATUS}"  
+	    echo "DEPLOY_STATUS Status ${DEPLOY_STATUS}"  
+	    echo "RUN_SONARQUBE_STATUS Status ${RUN_SONARQUBE_STATUS}"  
 	    echo "Job Success"
 	    emailext attachLog: true, attachmentsPattern: '', body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Checkout-code ${CHECKOUT_STATUS} Check console output at $BUILD_URL to view the results.', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
         }	
