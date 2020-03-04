@@ -58,11 +58,8 @@ pipeline {
 		  echo "${CHECKOUT_STATUS}"		
                 }      	     
 	}
- 
     }
-    }
-  }
-	  
+  } 
 
 post{
     success {
