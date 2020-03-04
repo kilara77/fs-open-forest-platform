@@ -18,14 +18,14 @@ pipeline {
         // SONAR_SCANNER_PATH = 
         SONAR_PROJECT_NAME = "fs-openforest-platform"
         MAILING_LIST = "ikumarasamy@techtrend.us, mahfuzur.rahman@usda.gov"
-	CHECKOUT_STATUS = 'Success'
-        INSTALL_DEPENDENCIES_STATUS= 'Success'
-	RUN_LINT_STATUS = 'Success'
-	RUN_UNIT_TESTS_STATUS = 'Success'
-	RUN_E2E_STATUS = 'Success'
-	RUN_PA11Y_STATUS = 'Success'	    
-	DEPLOY_STATUS = 'Success'	       	
-	RUN_SONARQUBE_STATUS = 'Success'	    
+	CHECKOUT_STATUS = 'Pending'
+        INSTALL_DEPENDENCIES_STATUS= 'Pending'
+	RUN_LINT_STATUS = 'Pending'
+	RUN_UNIT_TESTS_STATUS = 'Pending'
+	RUN_E2E_STATUS = 'Pending'
+	RUN_PA11Y_STATUS = 'Pending'	    
+	DEPLOY_STATUS = 'Pending'	       	
+	RUN_SONARQUBE_STATUS = 'Pending'	    
 	
 	REPO_NAME="fs-open-forest-platform"
 	REPO_OWNER_NAME="USDAForestService"
@@ -53,11 +53,14 @@ pipeline {
                 script {
                   currentBuild.displayName = "${env.CURRENTBUILD_DISPLAYNAME}"
                   currentBuild.description = "${env.CURRENT_BUILDDESCRIPTION}"	     
+  		  CHECKOUT_STATUS= 'Success'
                 }      	     
 	} 
 	 post {
                 failure {
-                    echo 'FAILED (in stage checkout code)'
+			script {
+        		CHECKOUT_STATUS= 'Failed'
+        	   	sh 'echo "FAILED in stage checkout code"'
                 }
             }	
     }
@@ -65,17 +68,17 @@ pipeline {
 stage('install-dependencies'){
     steps {
 	    script {
-        		INSTALL_DEPENDENCIES_STATUS= 'Success1'
-        		sh 'echo1 "Install dependencies"'	
+        		
+        		sh 'echo "Install dependencies"'	
+		    INSTALL_DEPENDENCIES_STATUS= 'Success'
     		}
         }
 		post {
                 failure {
 			script {
         		INSTALL_DEPENDENCIES_STATUS= 'Failed'
-        	   	sh 'FAILED (in stage install dependencies)'
-    		}
-                 
+        	   	sh 'echo "FAILED in stage install dependencies"'
+    		}                 
                 }
             }	
     }	  
@@ -87,44 +90,76 @@ stage('install-dependencies'){
 stage('run-unit-tests'){
     steps {
         sh 'echo "run-unit-tests"'
+        RUN_UNIT_TESTS_STATUS= 'Success'
+
         }
 		post {
                 failure {
-                    echo 'FAILED (in stage run-unit tests)'
+                    script {
+        		RUN_UNIT_TESTS_STATUS= 'Failed'
+			      	sh 'echo "FAILED in stage unit tests"'
+    		}
                 }
             }	
     }
 			 
 			 
   stage('run-lint'){
-    steps {
+    steps {	    
 	sh 'echo "run lint"'
+	    RUN_LINT_STATUS= 'Success'
 	}
 	post {
                 failure {
-                    echo 'FAILED (in stage lint)'
+                     script {
+        		RUN_LINT_STATUS= 'Failed'
+         	   	sh 'echo "FAILED in stage lint"'
+    		}
                 }
             }	
     }	      
 	      
   stage('run-sonarqube'){
         steps {
-	sh 'echo "run-sonarqube"'	    
+	sh 'echo "run-sonarqube"'
+		RUN_SONARQUBE_STATUS= 'Success'
     }
 	post {
                 failure {
-                    echo 'FAILED (in stage sonarqube)'
+                       script {
+        		RUN_SONARQUBE_STATUS= 'Failed'
+        	   	sh 'echo "FAILED in stage SonarQube"'
+    		}
                 }
             }	
    }  
 	 
+	       stage('run-e2e'){
+        steps {
+	sh 'echo "run-e2e"'
+		RUN_E2E_STATUS= 'Success'
+    }
+	post {
+                failure {
+                       script {
+        		RUN_E2E_STATUS= 'Failed'
+        	   	sh 'echo "FAILED in stage e2e"'
+    		}
+                }
+            }	
+   }  
+	      
 stage('run pa11y'){
     steps {
         sh 'echo "run pa11y"'
+	    RUN_PA11Y_STATUS= 'Success'
         } 
 	post {
                 failure {
-                    echo 'FAILED (in stage pa11y)'
+			 script {
+        		RUN_PA11Y_STATUS= 'Failed'
+        	      sh 'echo "FAILED in stage pa11y"'
+    		}                 
                 }
             }	
 
@@ -134,11 +169,15 @@ stage('run pa11y'){
 	  
  stage('dev-deploy'){
     steps {
-        sh 'echo "dev-deploy"'	    
+        sh 'echo "dev-deploy"'	   
+	    DEPLOY_STATUS= 'Success'
         }
 		post {
                 failure {
-                    echo 'FAILED (in stage dev-deploy)'
+                     script {
+        		DEPLOY_STATUS= 'Failed'
+        	      sh 'echo "FAILED in stage deploy"'
+    		}          
                 }
             }	
     }
@@ -159,7 +198,7 @@ post{
         }	
    	
     failure {
-	       echo "Checkout Status ${CHECKOUT_STATUS}"  
+	    echo "Checkout Status ${CHECKOUT_STATUS}"  
 	    echo "INSTALL_DEPENDENCIES_STATUS Status ${INSTALL_DEPENDENCIES_STATUS}"  
 	    echo "RUN_LINT_STATUS Status ${RUN_LINT_STATUS}"  
 	    echo "RUN_UNIT_TESTS_STATUS Status ${RUN_UNIT_TESTS_STATUS}"  
