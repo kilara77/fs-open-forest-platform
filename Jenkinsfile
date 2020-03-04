@@ -217,7 +217,13 @@ post{
 	    echo "DEPLOY_STATUS  ${DEPLOY_STATUS}"  
 	    echo "RUN_SONARQUBE_STATUS  ${RUN_SONARQUBE_STATUS}"  
 	    script{
-	     sh "echo ${env.GIT_AUTHOR_NAME}"  
+	     sh "echo $GIT_AUTHOR_NAME"  
+  	    sh "echo $BRANCH_NAME"  
+		    sh "echo $CHANGE_AUTHOR"  
+		    sh "echo $PROJECT_NAME"  
+		    
+		    
+		    
 	    }
 
 	    echo "Job Success"
