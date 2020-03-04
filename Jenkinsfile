@@ -116,16 +116,16 @@ stage('run-unit-tests'){
 stage('run pa11y'){
     steps {
         sh 'echo "run pa11y"'
-        }
-    }
+        } 
 	post {
                 failure {
                     echo 'FAILED (in stage pa11y)'
                 }
             }	
 
-		 }
 	  }	      
+      }
+      }
 	  
  stage('dev-deploy'){
     steps {
@@ -150,7 +150,7 @@ post{
 	    echo "Job Failed"  	    
 	    emailext attachLog: true, attachmentsPattern: '', body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Checkout-code ${CHECKOUT_STATUS} Check console output at $BUILD_URL to view the results.', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
         }	
-    }    	  
-    
-   }    
+    } 
+ }
+   
 
