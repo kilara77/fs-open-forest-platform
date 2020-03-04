@@ -64,8 +64,9 @@ pipeline {
                 }
             }	
     }
-	  
-stage('install-dependencies'){
+    }
+
+    stage('install-dependencies'){
     steps {
 	    script {
         		
@@ -82,15 +83,17 @@ stage('install-dependencies'){
                 }
             }	
     }	  
-	 
- stage('run tests')
+
+stage('run tests')
 	  {
       parallel{	  
 	      
 stage('run-unit-tests'){
     steps {
+        script {
         sh 'echo "run-unit-tests"'
         RUN_UNIT_TESTS_STATUS= 'Success'
+    }
 
         }
 		post {
@@ -102,12 +105,15 @@ stage('run-unit-tests'){
                 }
             }	
     }
-			 
-			 
-  stage('run-lint'){
+     
+
+     stage('run-lint'){
     steps {	    
-	sh 'echo "run lint"'
-	    RUN_LINT_STATUS= 'Success'
+        script
+        {
+	        sh 'echo "run lint"'
+	        RUN_LINT_STATUS= 'Success'
+        }
 	}
 	post {
                 failure {
@@ -117,12 +123,15 @@ stage('run-unit-tests'){
     		}
                 }
             }	
-    }	      
-	      
-  stage('run-sonarqube'){
+    }	
+
+
+stage('run-sonarqube'){
         steps {
-	sh 'echo "run-sonarqube"'
-		RUN_SONARQUBE_STATUS= 'Success'
+            script{
+	            sh 'echo "run-sonarqube"'
+		        RUN_SONARQUBE_STATUS= 'Success'
+            }
     }
 	post {
                 failure {
@@ -133,11 +142,14 @@ stage('run-unit-tests'){
                 }
             }	
    }  
-	 
-	       stage('run-e2e'){
+
+
+stage('run-e2e'){
         steps {
-	sh 'echo "run-e2e"'
-		RUN_E2E_STATUS= 'Success'
+            script {
+	            sh 'echo "run-e2e"'
+		        RUN_E2E_STATUS= 'Success'
+            }
     }
 	post {
                 failure {
@@ -148,11 +160,13 @@ stage('run-unit-tests'){
                 }
             }	
    }  
-	      
+
 stage('run pa11y'){
     steps {
-        sh 'echo "run pa11y"'
-	    RUN_PA11Y_STATUS= 'Success'
+        script {
+            sh 'echo "run pa11y"'
+	        RUN_PA11Y_STATUS= 'Success'
+        }
         } 
 	post {
                 failure {
@@ -164,13 +178,18 @@ stage('run pa11y'){
             }	
 
 	  }	      
+
+     
       }
       }
-	  
+
+
  stage('dev-deploy'){
     steps {
-        sh 'echo "dev-deploy"'	   
-	    DEPLOY_STATUS= 'Success'
+        script {
+            sh 'echo "dev-deploy"'	   
+	        DEPLOY_STATUS= 'Success'
+        }
         }
 		post {
                 failure {
@@ -181,8 +200,12 @@ stage('run pa11y'){
                 }
             }	
     }
- }
 
+
+
+ } 
+
+ 
 post{
     success {
 	    echo "Checkout Status ${CHECKOUT_STATUS}"  
@@ -211,5 +234,3 @@ post{
         }	
     } 
  }
-   
-
