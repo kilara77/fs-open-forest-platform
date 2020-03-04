@@ -217,8 +217,9 @@ post{
 	    echo "DEPLOY_STATUS  ${DEPLOY_STATUS}"  
 	    echo "RUN_SONARQUBE_STATUS  ${RUN_SONARQUBE_STATUS}"  
 	    echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+	    echo "JENKINS HOME ${env.JENKINS_HOME}"
 	    echo "Job Success"
-	    emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="email.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+	    emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
         }	
    	
     failure {
