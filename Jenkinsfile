@@ -58,11 +58,7 @@ pipeline {
 		  echo "${CHECKOUT_STATUS}"		
                 }      	     
 	}
-     post {
-	failure {
-	    echo 'FAILED (in stage checkout code)'
-	}
-    }	
+ 
     }
     }
   }
