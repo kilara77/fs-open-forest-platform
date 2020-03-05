@@ -19,7 +19,8 @@ pipeline {
 	RUN_E2E_STATUS = 'Pending'
 	RUN_PA11Y_STATUS = 'Pending'	    
 	DEPLOY_STATUS = 'Pending'	       	
-	RUN_SONARQUBE_STATUS = 'Pending'	    
+	RUN_SONARQUBE_STATUS = 'Pending'	
+	    AUTHOR = 'kilara77'
 	
 	REPO_NAME="fs-open-forest-platform"
 	REPO_OWNER_NAME="USDAForestService"
@@ -224,10 +225,11 @@ env.LRUN_E2E_STATUS = "${RUN_E2E_STATUS}"
 env.LRUN_PA11Y_STATUS = "${RUN_PA11Y_STATUS}"
 env.LRUN_SONARQUBE_STATUS = "${RUN_SONARQUBE_STATUS}"		    
 		    env.LDEPLOY_STATUS = "${DEPLOY_STATUS}"		        
+		    env.LGIT_BRANCH = "${GIT_BRANCH}"		        
+		    env.LGIT_AUTHOR = "${AUTHOR}"		        
 		    env.BLUE_OCEAN_URL="${env.JENKINS_URL}/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${BUILD_NUMBER}/pipeline"	    
 		    echo "${env.BLUE_OCEAN_URL}"    
-		    echo "${GIT_BRANCH}"
-		    echo "${GIT_AUTHOR_NAME}"
+		    echo "${GIT_BRANCH}"		
       	emailext attachLog: false, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: "${MAILING_LIST}"
 	    }
         }	
@@ -252,7 +254,9 @@ env.LRUN_UNIT_TESTS_STATUS = "${RUN_UNIT_TESTS_STATUS}"
 env.LRUN_E2E_STATUS = "${RUN_E2E_STATUS}"
 env.LRUN_PA11Y_STATUS = "${RUN_PA11Y_STATUS}"
 env.LRUN_SONARQUBE_STATUS = "${RUN_SONARQUBE_STATUS}"		    
-		    env.LDEPLOY_STATUS = "${DEPLOY_STATUS}"		
+		    env.LDEPLOY_STATUS = "${DEPLOY_STATUS}"	
+		    	    env.LGIT_BRANCH = "${GIT_BRANCH}"		        
+		    env.LGIT_AUTHOR = "${AUTHOR}"
 		    env.BLUE_OCEAN_URL="${env.JENKINS_URL}/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${BUILD_NUMBER}/pipeline"	    		    
 	    emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: "${MAILING_LIST}"
 	    }
