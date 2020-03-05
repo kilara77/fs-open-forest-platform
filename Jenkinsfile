@@ -8,16 +8,10 @@ pipeline {
     environment {        
         CURRENTBUILD_DISPLAYNAME = "fs-open-forest-platform Build #$BUILD_NUMBER"
         CURRENT_BUILDDESCRIPTION = "fs-open-forest-platform Build #$BUILD_NUMBER"
-  //      GITHUB_URL = credentials('GITHUB_URL')
-	//GITHUB_API_URL=credentials('GITHUB_API_URL')
-        //GITHUB_CREDENTIAL = credentials('GITHUB_CREDENTIAL')
-  //      BRANCH_NAME = $GIT_BRANCH
-        //SONAR_LOGIN = credentials('SONAR_LOGIN')
         SONAR_HOST = credentials('SONAR_HOST')
 	SONAR_TOKEN = credentials('SONAR_TOKEN_FSOPENFOREST')    
-        // SONAR_SCANNER_PATH = 
         SONAR_PROJECT_NAME = "fs-openforest-platform"
-        MAILING_LIST = "ikumarasamy@techtrend.us, mahfuzur.rahman@usda.gov"
+        MAILING_LIST = "ikumarasamy@techtrend.us"
 	CHECKOUT_STATUS = 'Pending'
         INSTALL_DEPENDENCIES_STATUS= 'Pending'
 	RUN_LINT_STATUS = 'Pending'
@@ -232,7 +226,7 @@ env.LRUN_SONARQUBE_STATUS = "${RUN_SONARQUBE_STATUS}"
 		    env.LDEPLOY_STATUS = "${DEPLOY_STATUS}"		        
 		    env.BLUE_OCEAN_URL="${env.JENKINS_URL}/blue/organizations/jenkins/${env.JOB_NAME}/detail/${JOB_NAME}/${BUILD_NUMBER}/pipeline"	    
 		    echo "${env.BLUE_OCEAN_URL}"    
-      	emailext attachLog: false, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+      	emailext attachLog: false, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: '$MAILING_LIST'
 	    }
         }	
    	
@@ -257,7 +251,8 @@ env.LRUN_E2E_STATUS = "${RUN_E2E_STATUS}"
 env.LRUN_PA11Y_STATUS = "${RUN_PA11Y_STATUS}"
 env.LRUN_SONARQUBE_STATUS = "${RUN_SONARQUBE_STATUS}"		    
 		    env.LDEPLOY_STATUS = "${DEPLOY_STATUS}"		
-	    emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+		    env.BLUE_OCEAN_URL="${env.JENKINS_URL}/blue/organizations/jenkins/${env.JOB_NAME}/detail/${JOB_NAME}/${BUILD_NUMBER}/pipeline"	    		    
+	    emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: '$MAILING_LIST'
 	    }
         }	
     } 
