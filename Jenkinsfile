@@ -217,6 +217,7 @@ post{
 	    echo "DEPLOY_STATUS  ${DEPLOY_STATUS}"  
 	    echo "RUN_SONARQUBE_STATUS  ${RUN_SONARQUBE_STATUS}"  
 	    echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} on ${env.BUILD_URL}"
+	    echo "${env.JENKINS_URL}blue/organizations/jenkins/$PROJECT_NAME/detail/$PROJECT_NAME/$BUILD_NUMBER/pipeline"
 	    echo "JENKINS HOME ${env.JENKINS_HOME}"
 	    echo "Job Success"
 	    script
