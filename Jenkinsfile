@@ -221,9 +221,17 @@ post{
 	    echo "Job Success"
 	    script
 	    {
-	    	env.PROJNAME = "${CHECKOUT_STATUS}"
-	    	echo "projname is ${PROJNAME}"	    
-	    	emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+	    	env.LCHECKOUT_STATUS = "${CHECKOUT_STATUS}"
+ 	    env.LINSTALL_DEPENDENCIES_STATUS = "${INSTALL_DEPENDENCIES_STATUS}"
+env.LRUN_LINT_STATUS = "${RUN_LINT_STATUS}"
+env.LRUN_UNIT_TESTS_STATUS = "${RUN_UNIT_TESTS_STATUS}"
+env.LRUN_E2E_STATUS = "${RUN_E2E_STATUS}"
+env.LRUN_PA11Y_STATUS = "${RUN_PA11Y_STATUS}"
+env.LRUN_SONARQUBE_STATUS = "${RUN_SONARQUBE_STATUS}"		    
+		    env.LDEPLOY_STATUS = "${DEPLOY_STATUS}"		        
+		    
+		    
+      	emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
 	    }
         }	
    	
@@ -237,7 +245,19 @@ post{
 	    echo "DEPLOY_STATUS  ${DEPLOY_STATUS}"  
 	    echo "RUN_SONARQUBE_STATUS  ${RUN_SONARQUBE_STATUS}"  
 	    echo "Job Failed"  	    
-	    emailext attachLog: true, attachmentsPattern: '', body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Checkout-code ${CHECKOUT_STATUS} Check console output at $BUILD_URL to view the results.', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+	    
+	        script
+	    {
+	    	env.LCHECKOUT_STATUS = "${CHECKOUT_STATUS}"
+ 	    env.LINSTALL_DEPENDENCIES_STATUS = "${INSTALL_DEPENDENCIES_STATUS}"
+env.LRUN_LINT_STATUS = "${RUN_LINT_STATUS}"
+env.LRUN_UNIT_TESTS_STATUS = "${RUN_UNIT_TESTS_STATUS}"
+env.LRUN_E2E_STATUS = "${RUN_E2E_STATUS}"
+env.LRUN_PA11Y_STATUS = "${RUN_PA11Y_STATUS}"
+env.LRUN_SONARQUBE_STATUS = "${RUN_SONARQUBE_STATUS}"		    
+		    env.LDEPLOY_STATUS = "${DEPLOY_STATUS}"		
+	    emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+	    }
         }	
     } 
  }
