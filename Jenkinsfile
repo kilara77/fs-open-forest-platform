@@ -219,11 +219,12 @@ post{
 	    echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
 	    echo "JENKINS HOME ${env.JENKINS_HOME}"
 	    echo "Job Success"
-	    
-	    env.PROJNAME = 'ILAYA'
-	    echo "projname is ${PROJNAME}"
-	    
-	    emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+	    script
+	    {
+	    	env.PROJNAME = 'ILAYA'
+	    	echo "projname is ${PROJNAME}"	    
+	    	emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
+	    }
         }	
    	
     failure {
