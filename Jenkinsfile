@@ -227,7 +227,7 @@ env.LRUN_SONARQUBE_STATUS = "${RUN_SONARQUBE_STATUS}"
 		    env.BLUE_OCEAN_URL="${env.JENKINS_URL}/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${BUILD_NUMBER}/pipeline"	    
 		    echo "${env.BLUE_OCEAN_URL}"    
 		    echo "${MAILING_LIST}"
-      	emailext attachLog: false, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: '${env.MAILING_LIST}'
+      	emailext attachLog: false, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: '${MAILING_LIST}'
 	    }
         }	
    	
@@ -253,7 +253,7 @@ env.LRUN_PA11Y_STATUS = "${RUN_PA11Y_STATUS}"
 env.LRUN_SONARQUBE_STATUS = "${RUN_SONARQUBE_STATUS}"		    
 		    env.LDEPLOY_STATUS = "${DEPLOY_STATUS}"		
 		    env.BLUE_OCEAN_URL="${env.JENKINS_URL}/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${BUILD_NUMBER}/pipeline"	    		    
-	    emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: '${env.MAILING_LIST}'
+	    emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: '${MAILING_LIST}'
 	    }
         }	
     } 
