@@ -221,7 +221,7 @@ post{
 	    echo "Job Success"
 	    script
 	    {
-	    	env.PROJNAME = '${CHECKOUT_STATUS}'
+	    	env.PROJNAME = "${CHECKOUT_STATUS}"
 	    	echo "projname is ${PROJNAME}"	    
 	    	emailext attachLog: true, attachmentsPattern: '', body: '''${SCRIPT, template="openforest.template"}''', replyTo: 'notifications@usda.gov', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ikumarasamy@techtrend.us'
 	    }
