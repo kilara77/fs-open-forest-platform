@@ -216,7 +216,7 @@ post{
 	    echo "RUN_PA11Y_STATUS  ${RUN_PA11Y_STATUS}"  
 	    echo "DEPLOY_STATUS  ${DEPLOY_STATUS}"  
 	    echo "RUN_SONARQUBE_STATUS  ${RUN_SONARQUBE_STATUS}"  
-	    echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+	    echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} on ${env.BUILD_URL}"
 	    echo "JENKINS HOME ${env.JENKINS_HOME}"
 	    echo "Job Success"
 	    script
