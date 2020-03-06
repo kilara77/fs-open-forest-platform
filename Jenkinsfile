@@ -73,7 +73,7 @@ pipeline {
 
 		    
     sh label: '', script: '''
-      curl -XPOST -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/kilara77/fs-open-forest-platform/statuses/$(git rev-parse HEAD) -d '{"state": "success","target_url": "${BLUE_OCEAN_URL}","description": "The build has failed!"}'
+      curl -XPOST -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/kilara77/fs-open-forest-platform/statuses/$(git rev-parse HEAD) -d '{"state": "success","target_url": "${env.BLUE_OCEAN_URL}","description": "The build has failed!"}'
       '''		    
     		}
         }
