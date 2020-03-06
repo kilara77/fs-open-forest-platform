@@ -51,9 +51,7 @@ pipeline {
                   currentBuild.description = "${env.CURRENT_BUILDDESCRIPTION}"	     
   		  
         
-      sh label: '', script: '''
-      curl -XPOST -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/kilara77/fs-open-forest-platform/statuses/$(git rev-parse HEAD) -d '{"state": "success","target_url": "${BUILD_URL}","description": "The build has failed!"}'
-      '''
+   
         
                 }      	     
 	} 
@@ -70,27 +68,16 @@ pipeline {
     stage('install-dependencies'){
     steps {
 	    script {
-        		
-        		sh 'echo "Install dependencies"'
-		    sh '''
-	pwd
-	cd frontend
-	pwd
-	rm package-lock.json && rm -rf node_modules && rm -rf ~/.node-gyp
-	npm install	
-	npm i typescript@3.1.6 --save-dev --save-exact
-	cd ../server
-	pwd
-	rm package-lock.json && rm -rf node_modules && rm -rf ~/.node-gyp
-	npm install		
-	'''	
-		    INSTALL_DEPENDENCIES_STATUS= 'Success'
+     sh 'echo "Install dependencies"'
+		   
+    sh label: '', script: '''
+      curl -XPOST -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/kilara77/fs-open-forest-platform/statuses/$(git rev-parse HEAD) -d '{"state": "success","target_url": "https://jenkins.fedgovcloud.us","description": "The build has failed!"}'
+      '''		    
     		}
         }
 		post {
                 failure {
 			script {
-        		INSTALL_DEPENDENCIES_STATUS= 'Failed'
         	   	sh 'echo "FAILED in stage install dependencies"'
     		}                 
                 }
