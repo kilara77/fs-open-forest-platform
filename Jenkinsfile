@@ -72,7 +72,7 @@ pipeline {
 
 		    
     sh '''
-      curl -XPOST -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/kilara77/fs-open-forest-platform/statuses/$(git rev-parse HEAD) -d '{"state": "success","target_url": "https://jenkins.fedgovcloud.us/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console","description": "The build has failed!"}'
+      curl -XPOST -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/kilara77/fs-open-forest-platform/statuses/$(git rev-parse HEAD) -d '{"state": "success","context":"ci/jenkins: checkout-code", "target_url": "https://jenkins.fedgovcloud.us/","description": "Your tests passed on Jenkins!"}'
       '''		    
     		}
         }
